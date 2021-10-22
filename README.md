@@ -158,28 +158,13 @@ CC_2comb %>%
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$credit_limit),1),2)*100
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$bal_FREQ),1),2)*100
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$bal),1),2)*100
-
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$cash_adv_FREQ),1),2)*100
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$oneoff_PURCHASES_FREQ),1),2)*100
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$PURCHASES_install_FREQ),1),2)*100
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$prc_full_pmts),1),2)*100
 round(prop.table(table(CC_2comb$k_segments,CC_2comb$tenure),1),2)*100
 
-CC_2comb %>%
-  group_by(cluster_4)%>%
-  summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
-  gather(key = var,value = value, bal:tenure)%>%
-  ggplot(aes(x=var,y=value,fill=factor(cluster_4)))+
-  geom_col(position='dodge')+
-  coord_flip()
 
-CC_2comb %>%
-  group_by(m_segments)%>%
-  summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
-  gather(key = var,value = value, bal:tenure)%>%
-  ggplot(aes(x=var,y=value,fill=factor(m_segments)))+
-  geom_col(position='dodge')+
-  coord_flip()
 
 
 
