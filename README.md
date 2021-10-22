@@ -92,7 +92,7 @@ ggplot(data=data.frame(cluster = 2:10,silhoette_width),aes(x=cluster,y=silhoette
   geom_point()+
   scale_x_continuous(breaks=seq(2,10,1))
 
-# check cluster sizes to find out niche segments
+#check cluster sizes to find out niche segments
 #3 clusters
 #set.seed(617)
 #km = kmeans(x = CC_2_scaled,centers = 3,iter.max=10000,nstart=25)
