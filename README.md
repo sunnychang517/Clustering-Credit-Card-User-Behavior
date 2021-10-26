@@ -56,7 +56,7 @@ library(ggplot2)
 
 set.seed(617)
 km = kmeans(x = CC_2_scaled,centers = 4,iter.max=10000,nstart=25)
-
+k_segments = km$cluster
 table(km$cluster) #Cluster 1(405), Cluster 2(3370), Cluster 3(1192), Cluster 4(3982)
 
 #Total within sum of squares Plot supports 3 to 4 clusters
@@ -109,7 +109,7 @@ table(k_segments) #Cluster 1(405), Cluster 2(3370), Cluster 3(1192), Cluster 4(3
 
 #Describe each clusters
 
-CC_2comb = cbind(CC_2,k_segments,cluster_4)
+CC_2comb = cbind(CC_2,k_segments)
 CC_2comb = as.data.frame(CC_2comb)
 
 library(dplyr)
