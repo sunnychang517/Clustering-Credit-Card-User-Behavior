@@ -107,35 +107,9 @@ table(k_segments) #Cluster 1(405), Cluster 2(3370), Cluster 3(1192), Cluster 4(3
 
 #4 clusters has a niche market
 
-##m_segment
-#M clustering
-library(mclust)
-set.seed(617)
-clusters_mclust = Mclust(CC_2_scaled)
-summary(clusters_mclust) ##Cluster 1(2093), Cluster 2(3800), Cluster 3(1980), Cluster 4(1076)
-
-mclust_bic = sapply(1:10,FUN = function(x) -Mclust(CC_2_scaled,G=x)$bic)
-mclust_bic 
-
-ggplot(data=data.frame(cluster = 1:10,bic = mclust_bic),aes(x=cluster,y=bic))+
-  geom_line(col='steelblue',size=1.2)+
-  geom_point()+
-  scale_x_continuous(breaks=seq(1,10,1)) 
-
-m_clusters = Mclust(data = CC_2_scaled,G = 4) #4 clusters
-m_segments = m_clusters$classification
-table(m_segments) #Cluster 1(1445), Cluster 2(1007), Cluster 3(2951), Cluster 4(3546)
-
-##h_segment
-set.seed(617)
-rect.hclust(tree=clusters,k = 4,border = 'tomato')
-
-cluster_4 = cutree(tree = clusters,k=4) ## Cluster 1(4415), Cluster 2(1276), Cluster 3(3235), Cluster 4(23)
-table(cluster_4)
-
 #Describe each clusters
 
-CC_2comb = cbind(CC_2,k_segments,cluster_4,m_segments)
+CC_2comb = cbind(CC_2,k_segments,cluster_4)
 CC_2comb = as.data.frame(CC_2comb)
 
 library(dplyr)
