@@ -42,11 +42,9 @@ CC_2 <- CC_1 %>%
 
 #Scale
 
-CC_2_scaled = scale(CC_2[,2:17]) #Our data cluster
+CC_2_scaled = scale(CC_2[,2:17]) 
 d = dist(x = CC_2_scaled,method = 'euclidean') 
-clusters = hclust(d = d,method='ward.D2')
-plot(clusters)
-cor(cophenetic(clusters),d) #[1] 0.3531409, this is our goodness of fit
+
 
 #K-means Clustering
 library(ggplot2)
