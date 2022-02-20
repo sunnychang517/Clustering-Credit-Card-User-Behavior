@@ -22,16 +22,12 @@ table(is.na(CC$PRC_FULL_PAYMENT))
 table(is.na(CC$TENURE))
 
 #Data Wrangling and Cleaning
-table(is.na(CC$CREDIT_LIMIT))
 
 #Remove NA
-library(dplyr)
 which(is.na(CC$CREDIT_LIMIT))
-CC <- CC[-c(5204), ]
+subset here
 
 #Recode Variables
-library(tidyverse)
-library(dplyr)
 
 CC_2 <- CC_1 %>%
   select(CUST_ID, BALANCE, BALANCE_FREQUENCY, PURCHASES, ONEOFF_PURCHASES, INSTALLMENTS_PURCHASES, CASH_ADVANCE, PURCHASES_FREQUENCY, PURCHASES_INSTALLMENTS_FREQUENCY, ONEOFF_PURCHASES_FREQUENCY,
