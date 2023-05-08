@@ -1,0 +1,129 @@
+CC = read.csv(file="file's path", head = TRUE)
+*Check for NAs*
+
+#Data Wrangling and Cleaning
+table(is.na(CC$CREDIT_LIMIT))
+which(is.na(CC$CREDIT_LIMIT))
+CC <- CC[-c(5204), ]
+CC_1 <- subset(CC,select = -c(16))
+
+#Tokenization
+CC_2 <- CC_1 %>%
+select(CUST_ID, BALANCE, BALANCE_FREQUENCY, PURCHASES,
+ONEOFF_PURCHASES, INSTALLMENTS_PURCHASES, CASH_ADVANCE,
+PURCHASES_FREQUENCY, PURCHASES_INSTALLMENTS_FREQUENCY,
+ONEOFF_PURCHASES_FREQUENCY,
+CASH_ADVANCE_FREQUENCY, CASH_ADVANCE_TRX, PURCHASES_TRX,
+CREDIT_LIMIT, PAYMENTS, PRC_FULL_PAYMENT, TENURE) %>%
+*Tokenize*(id = CUST_ID, bal = BALANCE, bal_FREQ = BALANCE_FREQUENCY,
+install_PURCHASES = INSTALLMENTS_PURCHASES, cash_adv = CASH_ADVANCE,
+PURCHASES_FREQ = PURCHASES_FREQUENCY, PURCHASES_install_FREQ =
+PURCHASES_INSTALLMENTS_FREQUENCY,
+cash_adv_FREQ = CASH_ADVANCE_FREQUENCY, cash_adv_TRX =
+CASH_ADVANCE_TRX, credit_limit = CREDIT_LIMIT, pmts = PAYMENTS, prc_full_pmts =
+PRC_FULL_PAYMENT, tenure = TENURE, oneoff_PURCHASES = ONEOFF_PURCHASES,
+oneoff_PURCHASES_FREQ = ONEOFF_PURCHASES_FREQUENCY)
+
+#Scale
+*Scale data set using Euclidean distance*
+plot(clusters)
+
+#H_Clustering
+set.seed(617)
+rect.hclust(tree=clusters,*tune Parameters*)
+cluster_4 = cutree(tree = clusters,k=4)
+*View cluster table*
+
+#K-means Clustering
+set.seed(617)
+km = kmeans(x = CC_2_scaled,*tune parameters*)
+*View Cluster Table*
+
+#Total within sum of squares 
+within_ss = sapply(1:5,FUN = function(x){
+set.seed(617)
+kmeans(x = CC_2_scaled,centers = x,*tune parameters*)$tot.withinss})
+*Plot in line graph*
+
+#Ratio Plot 
+ratio_ss = sapply(1:5,FUN = function(x) {
+set.seed(617)
+km = kmeans(x = CC_2_scaled,centers = x,*tune parameters*)
+km$betweenss/km$totss} )
+*Plot in line graph*
+
+#Silhouette Plot 
+silhoette_width = sapply(2:10,
+FUN = function(x) pam(x = CC_2_scaled,k = x)$silinfo$avg.width)
+*Plot in line graph*
+
+#M clustering
+set.seed(617)
+clusters_mclust = Mclust(CC_2_scaled)
+summary(clusters_mclust) ##Cluster 1(2093), Cluster 2(3800), Cluster 3(1980), Cluster 4(1076)
+
+## BIC Plot
+mclust_bic = sapply(1:10,FUN = function(x) -Mclust(CC_2_scaled,G=x)$bic)
+mclust_bic
+*Plot in Line graph*
+
+m_clusters = Mclust(data = CC_2_scaled,*Optimal number of clusters*) 
+m_segments = m_clusters$classification
+*View clusters in table*
+
+# Find Niche Segments
+set.seed(617)
+km = kmeans(x = CC_2_scaled,centers = 4,*tune parameters*)
+k_segments = km$cluster
+*View clusters in table*
+
+#Describe each clusters
+CC_2comb = cbind(CC_2,k_segments,cluster_4,m_segments)
+CC_2comb = as.data.frame(CC_2comb)
+library(dplyr)
+CC_2comb %>%
+group_by(k_segments)%>%
+summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
+data.frame()
+library(dplyr); library(ggplot2); library(tidyr)
+CC_2comb %>%
+group_by(k_segments)%>%
+summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
+gather(key = var,value = value, bal:tenure)%>%
+ggplot(aes(x=var,y=value,fill=factor(k_segments)))+
+geom_col(position='dodge')+
+coord_flip()
+
+#Create Proportion Tables of each attribute
+
+CC_2comb %>%
+group_by(cluster_4)%>%
+summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
+gather(key = var,value = value, bal:tenure)%>%
+ggplot(aes(x=var,y=value,fill=factor(cluster_4)))+
+geom_col(position='dodge')+
+coord_flip()
+
+CC_2comb %>%
+group_by(m_segments)%>%
+summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
+gather(key = var,value = value, bal:tenure)%>%
+ggplot(aes(x=var,y=value,fill=factor(m_segments)))+
+geom_col(position='dodge')+
+coord_flip()
+
+#Does a higher credit limit lead to higher cash advance or installment?
+*Find correlation of credit limit and cash advance*
+model1 = lm(*attributes*, *data*)
+summary(model1)
+*Find correlation of credit limit and installment purchases*
+model2 = lm(*attributes*, *data*)
+summary(model2)
+
+#Does a higher purchase frequency lead to a higher cash advance or installment?
+*Find correlation of frequency in purchases installements and count of purchases*
+model3 = lm(*attributes*, *data*)
+summary(model3)
+*Find correlation of frequency in cash advance and count of purchases*
+model4 = lm(*attributes*, *data*)
+summary(model4)
