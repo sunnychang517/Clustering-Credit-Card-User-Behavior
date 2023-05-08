@@ -1,4 +1,4 @@
-![Alt Text](https://aaaliving.acg.aaa.com/wp-content/uploads/2019/11/debit-vs-credit-card-holiday-shopping.gif)
+![](https://aaaliving.acg.aaa.com/wp-content/uploads/2019/11/debit-vs-credit-card-holiday-shopping.gif)
 
 # About:
 Traditional credit card companies are seeking to acquire new customers and optimize their
