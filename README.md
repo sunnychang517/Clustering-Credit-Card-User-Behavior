@@ -6,12 +6,12 @@ segments?
 2. How can we increase cash advance and installment purchase which are believed to be the main sources of credit companies’ revenues? 
 
 ## Table of Contents:
-[About]( </br>
-[Data Source] </br>
-[Pre-Requisites] </br>
-[Data Visualizations] </br>
-[Conclusion] </br>
-[Acknowledgement] 
+[About](https://github.com/sunnychang517/Clustering-Credit-Card-User-Behavior#about) </br>
+[Data Source](https://github.com/sunnychang517/Clustering-Credit-Card-User-Behavior#data-source) </br>
+[Pre-Requisites](https://github.com/sunnychang517/Clustering-Credit-Card-User-Behavior#pre-requisites) </br>
+[Data Visualizations](https://github.com/sunnychang517/Clustering-Credit-Card-User-Behavior#data-visualizations) </br>
+[Conclusion](https://github.com/sunnychang517/Clustering-Credit-Card-User-Behavior#conclusion) </br>
+[Acknowledgement](https://github.com/sunnychang517/Clustering-Credit-Card-User-Behavior#acknowledgement) 
 
 ## Data Source:
 The Credit Card Dataset for Clustering was from Kaggle
