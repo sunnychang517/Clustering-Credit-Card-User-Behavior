@@ -2,8 +2,6 @@ CC = read.csv(file="file's path", head = TRUE)
 *Check for NAs*
 
 #Data Wrangling and Cleaning
-table(is.na(CC$CREDIT_LIMIT))
-which(is.na(CC$CREDIT_LIMIT))
 CC <- CC[-c(5204), ]
 CC_1 <- subset(CC,select = -c(16))
 
@@ -78,14 +76,12 @@ k_segments = km$cluster
 *View clusters in table*
 
 #Describe each clusters
-CC_2comb = cbind(CC_2,k_segments,cluster_4,m_segments)
+CC_2comb = *Combine scaled data and segments*
 CC_2comb = as.data.frame(CC_2comb)
-library(dplyr)
 CC_2comb %>%
 group_by(k_segments)%>%
 summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
 data.frame()
-library(dplyr); library(ggplot2); library(tidyr)
 CC_2comb %>%
 group_by(k_segments)%>%
 summarize_all(function(x) round(mean(x,na.rm=T),2))%>%
