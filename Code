@@ -91,6 +91,7 @@ geom_col(position='dodge')+
 coord_flip()
 
 #Create Proportion Tables of each attribute
+...
 
 CC_2comb %>%
 group_by(cluster_4)%>%
